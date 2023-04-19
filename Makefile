@@ -14,7 +14,7 @@ boggle-driver: boggle.cpp boggle.h boggle-driver.cpp
 ht-test: ht-test.cpp ht.h
 	$(CXX) $(CXXFLAGS) $(DEFS) $< -o $@
 
-str-hash-test: str-hash-test.cpp hash.h
+s: str-hash-test.cpp hash.h
 	$(CXX) $(CXXFLAGS) $(DEFS) $< -o $@
 
 hash-check: hash-check.cpp hash.h
