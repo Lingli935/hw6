@@ -478,12 +478,26 @@ void HashTable<K,V,Prober,Hash,KEqual>::resize()
 		{
 			//if oldTable_[i] not nullptr and not deleted
 			if(oldTable_[i]!= nullptr  && oldTable_[i]->deleted == 0)
-			insert(oldTable_[i]->item);
-		}
+            {
+                HASH_INDEX_T loc = probe( oldTable_[i]->item.first) ;
+	           if(loc >= npos)
+	           throw std::logic_error("Error");
+
+                else
+                {
+                    table_[loc] = oldTable_[i];
+                    numNonDeleteElem++;
+                }
+            }
+            if(oldTable_[i]!= nullptr  && oldTable_[i]->deleted == 1)
+            {
+                delete oldTable_[i];
+            }
+                        
+        }
     
 		//set deleted count = 0
 		numDeleteElem = 0;
-
 }
 
 // Almost complete
